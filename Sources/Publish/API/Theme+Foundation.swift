@@ -12,7 +12,9 @@ public extension Theme {
     static var foundation: Self {
         Theme(
             htmlFactory: FoundationHTMLFactory(),
-            resourcePaths: ["Resources/FoundationTheme/styles.css"]
+            resourcePaths: ["Resources/PhotoTheme/main.css",
+							"Resources/PhotoTheme/fonts"
+			]
         )
     }
 }
@@ -31,6 +33,10 @@ private struct FoundationHTMLFactory<Site: Website>: HTMLFactory {
                         .class("description"),
                         .text(context.site.description)
                     ),
+					.div(
+						.class("content"),
+						.contentBody(index.content.body)
+					),
                     .h2("Latest content"),
                     .itemList(
                         for: context.allItems(
